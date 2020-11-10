@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C98D4551-7C67-477B-9188-5B4B41CB378A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NDbfReaderEx</RootNamespace>
+    <AssemblyName>NDbfReaderEx</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DocumentationFile>
+    </DocumentationFile>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BooleanColumn.cs" />
+    <Compile Include="ClipperReader.cs" />
+    <Compile Include="ColumnDefinitionForCreateTable.cs" />
+    <Compile Include="CreatePocoClass.cs" />
+    <Compile Include="DbfTableEnumerator.cs" />
+    <Compile Include="DbfTableParameters.cs" />
+    <Compile Include="DbfTablePoco.cs" />
+    <Compile Include="DoubleColumn.cs" />
+    <Compile Include="IIndexFile.cs" />
+    <Compile Include="IMemoFile.cs" />
+    <Compile Include="IndexFileBase.cs" />
+    <Compile Include="IndexFileNDX.cs" />
+    <Compile Include="IndexFileNTX.cs" />
+    <Compile Include="IndexPageCache.cs" />
+    <Compile Include="MemoColumn.cs" />
+    <Compile Include="DateTimeColumn.cs" />
+    <Compile Include="Column.cs" />
+    <Compile Include="DbfRow.cs" />
+    <Compile Include="DbfTable_2.cs" />
+    <Compile Include="DbfTable.cs" />
+    <Compile Include="DecimalColumn.cs" />
+    <Compile Include="ExceptionFactory.cs" />
+    <Compile Include="IColumn.cs" />
+    <Compile Include="Int32Column.cs" />
+    <Compile Include="MemoFileBase.cs" />
+    <Compile Include="MemoFileDBT.cs" />
+    <Compile Include="NativeColumnType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reader.cs" />
+    <Compile Include="StringColumn.cs" />
+    <Compile Include="TableExtensions.cs" />
+    <Compile Include="Template\CreatePocoClassDynamicTemplate.cs" />
+    <Compile Include="Template\CreatePocoClassHardWiredTemplate.cs" />
+    <Compile Include="Template\CreatePocoClassSoftWiredTemplate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NDbfReaderEx.nuspec" />
+    <None Include="tempKey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Doc\xbase.txt">
+      <Link>xbase.txt</Link>
+    </Content>
+    <Content Include="ReadMe__and__eMeL_ForkInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>if not exist "$(ProjectDir)key.snk" (
+    if exist "$(SolutionDir)..\eXavera.snk" (
+        echo "using original key"
+        copy /y "$(SolutionDir)..\eXavera.snk" "$(ProjectDir)key.snk"
+    ) else (
+        echo "using temporary key"
+        copy /y "$(ProjectDir)tempKey.snk" "$(ProjectDir)key.snk"
+    )
+)</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

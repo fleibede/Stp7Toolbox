@@ -1,0 +1,952 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA13D586-9E44-438E-9DFB-8C119BDB4D9D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Ste7ReaderConsole</RootNamespace>
+    <AssemblyName>Ste7ReaderConsole</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SHARPZIPLIB;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MedallionTopologicalSort, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MedallionTopologicalSort.1.0.0\lib\net45\MedallionTopologicalSort.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Discovery\IPScanner.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Discovery\IPScanner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\FetchWrite\ErrorCodes.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\FetchWrite\ErrorCodes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\FetchWrite\FetchWriteConnection.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\FetchWrite\FetchWriteConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\FetchWrite\OperationCode.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\FetchWrite\OperationCode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\FetchWrite\OrgTypes.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\FetchWrite\OrgTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\FetchWrite\RequestHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\FetchWrite\RequestHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\FetchWrite\ResponseHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\FetchWrite\ResponseHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\LibNoDave\IDaveConnection.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\LibNoDave\IDaveConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\LibNoDave\IPDU.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\LibNoDave\IPDU.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\LibNoDave\IresultSet.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\LibNoDave\IresultSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\LibNoDave\libnodave.net.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\LibNoDave\libnodave.net.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\ByteFunctions.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\ByteFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Connection.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Connection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\ConnectionConfig.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\ConnectionConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\Interface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\Interface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\ISONetworkInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\ISONetworkInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\NetLinkLiteInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\NetLinkLiteInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\NetLinkProInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\NetLinkProInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\NetworkInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\NetworkInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\S7OnlineInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\S7OnlineInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\SerialInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\SerialInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\TCPInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Interfaces\TCPInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\internal\SocketExtensions.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\internal\SocketExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\internal\TCPConnection.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\internal\TCPConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Pdus\daveConst.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Pdus\daveConst.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Pdus\Pdu.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Pdus\Pdu.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\Pdus\PduRequest.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\Pdus\PduRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\ResultSet.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\ResultSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Library\TcpNETdave.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Library\TcpNETdave.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Networking\SocketExtensions.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Networking\SocketExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\Networking\TCPFunctionsAsync.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\Networking\TCPFunctionsAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\PLCConnection.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\PLCConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\PLCConnectionConfiguration.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\PLCConnectionConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\PLCException.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\PLCException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\PLCNckTag.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\PLCNckTag.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\PLCTag.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\PLCTag.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\PLCTagGeneric.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\PLCTagGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\PLCTagReadHelper.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\PLCTagReadHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\S7_xxx\SZLData.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\S7_xxx\SZLData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Communication\S7_xxx\SZLDatasets.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Communication\S7_xxx\SZLDatasets.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\AWL\Step7V5\S7ConvertingOptions.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\AWL\Step7V5\S7ConvertingOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\BitByteAddress.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\BitByteAddress.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Block.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Block.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\DataBlockRow.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\DataBlockRow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\FunctionBlockRow.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\FunctionBlockRow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\IBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\IBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\IDataBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\IDataBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\IDataRow.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\IDataRow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\IFunctionBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\IFunctionBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\IProjectBlockInfo.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\IProjectBlockInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Network.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Network.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\ProjectBlockInfo.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\ProjectBlockInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\ProjectPlcBlockInfo.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\ProjectPlcBlockInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\ReferenceDataEntry.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\ReferenceDataEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\ReferencePoint.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\ReferencePoint.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5Block.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5Block.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5CommentBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5CommentBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5DataBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5DataBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5FunctionBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5FunctionBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5FunctionBlockNetwork.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5FunctionBlockNetwork.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5FunctionBlockRow.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5FunctionBlockRow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5Parameter.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5Parameter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5ParameterFormat.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5ParameterFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5ParameterType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5ParameterType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5ProjectBlockInfo.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step5\S5ProjectBlockInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAConstant.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAConstant.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAForceTable.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAForceTable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIATag.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIATag.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITiaVarTab.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITiaVarTab.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAVarTabFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAVarTabFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAWatchAndForceTablesFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAWatchAndForceTablesFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAWatchTable.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\ITIAWatchTable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIABlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIABlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIADataBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIADataBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIADataRow.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIADataRow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIAFunctionBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIAFunctionBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIAProgrammBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIAProgrammBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIAProjectBlockInfo.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V11\TIAProjectBlockInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\PLCFunctionBlockAdressType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\PLCFunctionBlockAdressType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7AnyPointer.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7AnyPointer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7Block.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7Block.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataBlockExpandOptions.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataBlockExpandOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataRow.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataRow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataRowSubType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataRowSubType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataRowType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7DataRowType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlockNetwork.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlockNetwork.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlockParameter.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlockParameter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlockParameterDirection.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlockParameterDirection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlockRow.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7FunctionBlockRow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7ProjectBlockInfo.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7ProjectBlockInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7ProjectSourceInfo.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7ProjectSourceInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7SourceBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7SourceBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7VATBlock.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7VATBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7VATRow.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\Step7V5\S7VATRow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Blocks\TiaAndSTep7DataBlockRow.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Blocks\TiaAndSTep7DataBlockRow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\ConnectionTargetPLCType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\ConnectionTargetPLCType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Credentials.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Credentials.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\DiagnosticEntry.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\DiagnosticEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\MasterSystem.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\MasterSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\Network.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\Network.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\Node.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\Node.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfibusMasterSystem.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfibusMasterSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfibusNetwork.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfibusNetwork.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfibusNode.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfibusNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfinetMasterSystem.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfinetMasterSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfinetNode.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Hardware\Step7V5\ProfinetNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\LibNoDaveConnectionLibraryException.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\LibNoDaveConnectionLibraryException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\LibNoDaveConnectionLibraryExceptionType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\LibNoDaveConnectionLibraryExceptionType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\MemoryArea.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\MemoryArea.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\MnemonicLanguage.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\MnemonicLanguage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\MultiLanguangeString.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\MultiLanguangeString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\NCK_Area.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\NCK_Area.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Network\EthernetNetworkInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Network\EthernetNetworkInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Network\MpiProfiBusNetworkInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Network\MpiProfiBusNetworkInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Network\Network.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Network\Network.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Network\NetworkInterface.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Network\NetworkInterface.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Network\NetworkType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Network\NetworkType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\PLCBlockName.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\PLCBlockName.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\PLCBlockType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\PLCBlockType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\PLCLanguage.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\PLCLanguage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\PLCMemoryInfo.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\PLCMemoryInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\PLCState.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\PLCState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\PLCTriggerVarTab.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\PLCTriggerVarTab.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\PLCType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\PLCType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Pointer.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Pointer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\ExportFormat.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\ExportFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IBlocksFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IBlocksFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IHardwareFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IHardwareFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IPLCBlocksFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IPLCBlocksFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IProgrammFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IProgrammFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IProjectFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IProjectFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IRootProgrammFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\IRootProgrammFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\ISymbolTable.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\ISymbolTable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\OnlineBlocksFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\OnlineBlocksFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\ProjectFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\ProjectFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\ReferenceData.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\ReferenceData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\Step5BlocksFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\Step5BlocksFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\Step5ProgrammFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\Step5ProgrammFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\Step5ProjectFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\Step5ProjectFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\SymbolTable.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step5\SymbolTable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIABlocksFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIABlocksFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIACPUFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIACPUFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIAProjectFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIAProjectFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIASymbolTableEntry.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIASymbolTableEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIASymTabFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V11\TIASymTabFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\BlocksOfflineFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\BlocksOfflineFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\CommunicationProcessorFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\CommunicationProcessorFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\CPFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\CPFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\CPUFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\CPUFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\HardwareConfigFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\HardwareConfigFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\S7ProgrammFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\S7ProgrammFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\SourceFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\SourceFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\StationConfigurationFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\StationConfigurationFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\Step7ProjectFolder.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\Step7ProjectFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\SymbolTable.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\Step7V5\SymbolTable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\SymbolTableEntry.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Projectfolders\SymbolTableEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\ProjectItem.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\ProjectItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\ReferenceDataAccessMode.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\ReferenceDataAccessMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\Step7Attribute.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\Step7Attribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\TagDataType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\TagDataType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\TagDisplayDataType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\TagDisplayDataType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Enums\dBaseType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Enums\dBaseType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Enums\TagHeaderKeyFormat.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Enums\TagHeaderKeyFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Enums\TagKeyFormat.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Enums\TagKeyFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Index\BTree.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Index\BTree.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Index\Field.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Index\Field.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Index\Index.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Index\Index.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Index\MDX\MDX.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Index\MDX\MDX.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Index\MDX\MDXFile.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Index\MDX\MDXFile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Index\MDX\MNode.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Index\MDX\MNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Index\Node.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Index\Node.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Index\NodeFloat.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Index\NodeFloat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Index\NodeKey.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Index\NodeKey.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\ParseDBF.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\ParseDBF.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Structures\DBFHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Structures\DBFHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Structures\DBT\DBTHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Structures\DBT\DBTHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Structures\DBT\MemoHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Structures\DBT\MemoHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Structures\FieldDescriptor.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Structures\FieldDescriptor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Structures\MDX\MDX4TagTableHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Structures\MDX\MDX4TagTableHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Structures\MDX\MDX7TagTableHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Structures\MDX\MDX7TagTableHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Structures\MDX\MDXHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Structures\MDX\MDXHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Structures\MDX\MDXTagHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Structures\MDX\MDXTagHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DBF\Util.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DBF\Util.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\ChunkedMemoryStream.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\ChunkedMemoryStream.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\CrcHelper.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\CrcHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\DictionarySerializer.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\DictionarySerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\EndianAttribute.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\EndianAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\IEnumerableExtensions.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\IEnumerableExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\NumericComparer.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\NumericComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\SerializeToString.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\SerializeToString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\SingleExtensions.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\SingleExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\StringExtensions.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\StringExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\StringLogicalComparer.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\StringLogicalComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\General\ZipHelper.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\General\ZipHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S5\MC5\MC5LIB_SYMTAB.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S5\MC5\MC5LIB_SYMTAB.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S5\MC5\MC5toAWL.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S5\MC5\MC5toAWL.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S5\MC5\MC5toComment.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S5\MC5\MC5toComment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S5\MC5\MC5toDB.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S5\MC5\MC5toDB.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_1xyy\VariableLengthQuantityHelper.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_1xyy\VariableLengthQuantityHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\AWLCodeOptimizer.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\AWLCodeOptimizer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\AWLtoMC7.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\AWLtoMC7.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\AWLToSource.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\AWLToSource.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\CallConverter.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\CallConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\DBtoMC7.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\DBtoMC7.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\FBStaticAccessConverter.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\FBStaticAccessConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\Helper.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\Helper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\JumpMarks.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\JumpMarks.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\LocalDataConverter.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\LocalDataConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\MC7Converter.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\MC7Converter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\MC7toAWL.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\MC7toAWL.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\MC7toDB.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\MC7toDB.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\Mnemonic.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\Mnemonic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\NetWork.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\NetWork.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\Parameter.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\Parameter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\StaticDataConverter.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\PLCs\S7_xxx\MC7\StaticDataConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\Project.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\Project.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\Projects.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\Projects.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\ProjectType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\ProjectType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\SelectPartType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\SelectPartType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\Step5Project.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\Step5Project.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\Step7ProjectV5.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\Step7ProjectV5.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\AttribSets\CoreAttributes.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\AttribSets\CoreAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\BinaryReaderExtensions.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\BinaryReaderExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaAttribSets.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaAttribSets.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaFileProtocol.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaFileProtocol.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaFileType.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaFileType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaFixedRootObjectInstanceIds.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaFixedRootObjectInstanceIds.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaObjectStates.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaObjectStates.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaObjectStatesLegacy.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaObjectStatesLegacy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaTypeIds.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Enums\TiaTypeIds.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Structs\TiaFileHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Structs\TiaFileHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Structs\TiaMarker.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Structs\TiaMarker.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Structs\TiaObjectHeader.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Structs\TiaObjectHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\Structs\TiaObjectHeaderLegacy.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\Structs\TiaObjectHeaderLegacy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaCompression.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaCompression.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaFileObject.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaFileObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaHelper.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaObjectId.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaObjectId.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaRootObjectEntry.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaRootObjectEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaRootObjectList.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\TiaRootObjectList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\AttributeClasses\BaseTiaAttributeSet.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\AttributeClasses\BaseTiaAttributeSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\AttributeClasses\BaseTiaExpandoAttributeSet.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\AttributeClasses\BaseTiaExpandoAttributeSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\AttributeClasses\CoreAttributes.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\AttributeClasses\CoreAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\Attributes\TiaAttributeIdAttribute.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\Attributes\TiaAttributeIdAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\Attributes\TiaTypeIdAttribute.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\Attributes\TiaTypeIdAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\ParentLink.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\ParentLink.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\TiaObject.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\TiaObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\TiaObjectStructure.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\TiaObjectStructure.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\TiaXmlWriter.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\TiaXmlWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\TypeClasses\TiaStorrageObject.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Projectfiles\TIA\UsingTiaDlls\TypeClasses\TiaStorrageObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Simulator\Simulator.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Simulator\Simulator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Source\AWLSourceParser.cs">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Source\AWLSourceParser.cs</Link>
+    </Compile>
+    <Compile Include="Stp7Toolbox\FastDBF\DbfColumn.cs" />
+    <Compile Include="Stp7Toolbox\FastDBF\DbfDataTruncateException.cs" />
+    <Compile Include="Stp7Toolbox\FastDBF\DbfFile.cs" />
+    <Compile Include="Stp7Toolbox\FastDBF\DbfHeader.cs" />
+    <Compile Include="Stp7Toolbox\FastDBF\DbfRecord.cs" />
+    <Compile Include="Stp7Toolbox\FastDBF\Properties\AssemblyInfo.cs" />
+    <Compile Include="Stp7Toolbox\PlcParser\GetSymbolList.cs" />
+    <Compile Include="Stp7Toolbox\PlcParser\SourceSorter.cs" />
+    <Compile Include="Stp7Toolbox\PlcParser\FastDBF Item.cs" />
+    <Compile Include="Stp7Toolbox\PlcParser\Helpers.cs" />
+    <Compile Include="Stp7Toolbox\PlcParser\NDbf Item.cs" />
+    <Compile Include="Stp7Toolbox\PlcParser\PlcParser.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\BooleanColumn.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\ClipperReader.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\Column.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\ColumnDefinitionForCreateTable.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\CreatePocoClass.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\DateTimeColumn.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\DbfRow.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\DbfTable.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\DbfTableEnumerator.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\DbfTableParameters.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\DbfTablePoco.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\DbfTable_2.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\DecimalColumn.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\DoubleColumn.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\ExceptionFactory.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\IColumn.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\IIndexFile.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\IMemoFile.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\IndexFileBase.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\IndexFileNDX.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\IndexFileNTX.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\IndexPageCache.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\Int32Column.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\MemoColumn.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\MemoFileBase.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\MemoFileDBT.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\NativeColumnType.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\Properties\AssemblyInfo.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\Properties\Resources.Designer.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\Reader.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\StringColumn.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\TableExtensions.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\Template\CreatePocoClassDynamicTemplate.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\Template\CreatePocoClassHardWiredTemplate.cs" />
+    <Compile Include="Stp7Toolbox\NDbfReader\Template\CreatePocoClassSoftWiredTemplate.cs" />
+    <Compile Include="Stp7Toolbox\Snap7\snap7.net.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\System Software for S7-300 and S7-400 System and Standard Functions.pdf">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\System Software for S7-300 and S7-400 System and Standard Functions.pdf</Link>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Stp7Toolbox\NDbfReader\NDbfReaderEx.csproj" />
+    <None Include="Stp7Toolbox\NDbfReader\NDbfReaderEx.nuspec" />
+    <None Include="Stp7Toolbox\NDbfReader\tempKey.snk" />
+    <None Include="Stp7Toolbox\Snap7\snap7.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\externalDlls\libnodave_jfkmod.dll">
+      <Link>Stp7Toolbox\externalDlls\libnodave_jfkmod.dll</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\externalDlls\libnodave_jfkmod64.dll">
+      <Link>Stp7Toolbox\externalDlls\libnodave_jfkmod64.dll</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\DB Interface Example.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\DB Interface Example.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\DBFsInBlocksOfflineFolder.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\DBFsInBlocksOfflineFolder.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\Info.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\Info.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\Licence.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\Licence.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\MC5CodeOfParameterAndDBinProjectFileAndOnline.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\MC5CodeOfParameterAndDBinProjectFileAndOnline.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\MC7 Block Format.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\MC7 Block Format.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\PDUs.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\PDUs.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\S5D-Baustein1.bmp">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\S5D-Baustein1.bmp</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\S7 TSAP.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\S7 TSAP.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\SDBs.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\SDBs.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\StatusOfPLCBlock.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\StatusOfPLCBlock.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\Step5ProjectInfo.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\Step5ProjectInfo.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\Step7ProjectFileCommentRowInSubblkDBF.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\Step7ProjectFileCommentRowInSubblkDBF.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\Step7Projectfiles.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\Step7Projectfiles.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\SZLs.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\SZLs.txt</Link>
+    </Content>
+    <Content Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\Documentation\TIA CRC.txt">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\Documentation\TIA CRC.txt</Link>
+    </Content>
+    <Content Include="Stp7Toolbox\NDbfReader\ReadMe__and__eMeL_ForkInfo.txt" />
+    <Content Include="Stp7Toolbox\Snap7\snap7.dll" />
+    <Content Include="xbase.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\DiagnosticEntry.en.resx">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\DiagnosticEntry.en.resx</Link>
+      <DependentUpon>DiagnosticEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\DiagnosticEntry.es.resx">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\DiagnosticEntry.es.resx</Link>
+      <DependentUpon>DiagnosticEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\DotNetSiemensPLCToolBoxLibrary\LibNoDaveConnectionLibrary\DataTypes\DiagnosticEntry.resx">
+      <Link>Stp7Toolbox\LibNoDaveConnectionLibrary\DataTypes\DiagnosticEntry.resx</Link>
+      <DependentUpon>DiagnosticEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stp7Toolbox\NDbfReader\Properties\Resources.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

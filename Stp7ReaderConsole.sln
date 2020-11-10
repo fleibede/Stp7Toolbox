@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stp7ReaderConsole", "Stp7ReaderConsole.csproj", "{AA13D586-9E44-438E-9DFB-8C119BDB4D9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{214D3214-3BF0-40B5-978E-43FCC0EB447E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA13D586-9E44-438E-9DFB-8C119BDB4D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA13D586-9E44-438E-9DFB-8C119BDB4D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA13D586-9E44-438E-9DFB-8C119BDB4D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA13D586-9E44-438E-9DFB-8C119BDB4D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{214D3214-3BF0-40B5-978E-43FCC0EB447E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{214D3214-3BF0-40B5-978E-43FCC0EB447E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{214D3214-3BF0-40B5-978E-43FCC0EB447E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{214D3214-3BF0-40B5-978E-43FCC0EB447E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21DB11EB-3348-48F0-B721-F38E13C824D7}
+	EndGlobalSection
+EndGlobal
